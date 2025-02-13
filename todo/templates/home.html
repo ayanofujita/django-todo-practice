@@ -3,17 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To-do List</title>
+  <title>To-Do List</title>
 </head>
 <body>
   <h1>To-Do List</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Add Task</button>
+  </form>
+
   <ul>
     {% for task in tasks %}
-      <li>
-        {{ task.title }} - {% if task.completed %} Done {% else %} Not Done {% endif %}
-      </li>
+      <li>{{ task.title }}</li>
     {% empty %}
-      <li>No tasks available</li>
+      <li>No tasks yet!</li>
     {% endfor %}
   </ul>
 </body>
